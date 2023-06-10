@@ -9,7 +9,7 @@ namespace Business
 {
     public class Cliente : Base
     {
-        [OpcoesBase(ChavePrimaria =true, UsaBD =true, UsaBusca =true)]
+        [OpcoesBase(ChavePrimaria = true, UsaBD = true, UsaBusca = true)]
         public int Id { get; set; }
 
         [OpcoesBase(UsaBD = true)]

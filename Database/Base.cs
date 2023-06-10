@@ -12,7 +12,7 @@ namespace Database
 {
     public class Base : IBase
     {
-        private string connectionString = ConfigurationManager.AppSettings["MySql"];
+        private string connectionString = ConfigurationManager.AppSettings["DataSource"];
         public List<IBase> Buscar()
         {
             var lista = new List<IBase>();
@@ -106,6 +106,12 @@ namespace Database
                 {
                     OpcoesBase opcoesBase = (OpcoesBase)pi.GetCustomAttribute(
                         typeof(OpcoesBase));
+
+                    // Caso a propriedade que esta sendo lida no momento nao tenha opcoes base valida sendo null
+                    // Vamos continuar o laco ate que ele finalize.
+                    // Ou seja se propriedade nao possui annotation UsaDB, ela nao vai fazer parte da tabela (reflection).
+                    if (opcoesBase == null) continue;
+                    
                     if (opcoesBase.ChavePrimaria)
                     {
                         chavePrimaria = pi.Name + " int auto_increment primary key";
@@ -209,7 +215,7 @@ namespace Database
                 string sql;
                 if (Key == 0)
                 {
-                    sql = "select * " + this.GetType().Name + "s ";
+                    sql = "select * from" + this.GetType().Name + "s ";
                     if (where.Count > 0)
                     {
                         sql += " where " + string.Join("or ", where.ToArray());
