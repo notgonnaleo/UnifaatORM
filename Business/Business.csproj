@@ -84,9 +84,7 @@
     <Compile Include="Cliente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repository\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Database\Database.csproj">
       <Project>{d3c7f5d1-b36e-4363-883e-0c97e04e1dbc}</Project>

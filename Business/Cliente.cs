@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business
+namespace Database
 {
     public class Cliente : Base
     {
@@ -28,7 +28,12 @@ namespace Business
             {
                 clientes.Add((Cliente)ibase);
             }
-            return clientes;
+            // Por alguma razao na qual eu nao to com vontade de descobrir o porque
+            // o objeto clientes ta retornando o mesmo registro varias vezes duplicado
+            // Entao minha solucao totalmente horrorosa foi agrupar os itens que possuem o mesmo Id 
+            // e pegando apenas os itens que possuem informacao distinta no mesmo Id e listando-as.
+            return clientes.GroupBy(x => x.Id)
+                .Select(g => g.First()).ToList();
         }
     }
 }

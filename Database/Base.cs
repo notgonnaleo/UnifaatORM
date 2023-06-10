@@ -121,7 +121,7 @@ namespace Database
                         campos.Add(pi.Name + " " + tipoPropriedade(pi) + " ");
                     }
                 }
-                string sql = "create table if not exists " + this.GetType().Name + "s (";
+                string sql = "create table if not exists " + this.GetType().Name + " (";
                 sql += chavePrimaria + ", ";
                 sql += string.Join(", ", campos.ToArray())+");";
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
@@ -215,7 +215,7 @@ namespace Database
                 string sql;
                 if (Key == 0)
                 {
-                    sql = "select * from" + this.GetType().Name + "s ";
+                    sql = "select * from " + this.GetType().Name;
                     if (where.Count > 0)
                     {
                         sql += " where " + string.Join("or ", where.ToArray());
@@ -250,6 +250,9 @@ namespace Database
         }
     
 
+        // Sim, vamos implementar essa interface aqui
+        // mesmo que nao esteja sendo usada, o motivo eh porque 
+        // temos que respeitar o contrato entre a interface a classe.
         int IBase.Key()
         {
             throw new NotImplementedException();
