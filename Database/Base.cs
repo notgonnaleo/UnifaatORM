@@ -34,7 +34,7 @@ namespace Database
                         {
                             if(tipoPropriedade(pi)=="varchar(255)" ||
                                     tipoPropriedade(pi) =="datetime")
-                            where.Add(pi.Name + "='" + pi.GetValue(this)+"'");
+                                where.Add(pi.Name + "='" + pi.GetValue(this) + "'");
                             else
                                 where.Add(pi.Name + "=" + pi.GetValue(this));
                         }
@@ -44,15 +44,15 @@ namespace Database
                 string sql;
                 if (Key == 0)
                 {
-                    sql = "select * " + this.GetType().Name + "s ";
+                    sql = "select * from " + this.GetType().Name;
                     if(where.Count > 0)
                     {
-                        sql += " where " + string.Join("or ", where.ToArray());
+                        sql += " where " + string.Join(" or ", where.ToArray());
                     }
                 }
                 else
                 {
-                    sql = "select * from " + this.GetType().Name + "s where"
+                    sql = "select * from " + this.GetType().Name + " where "
                         + chavePrimaria;
                 }
 
@@ -136,7 +136,7 @@ namespace Database
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string sql = "delete from " + this.GetType().Name + "s where id="
+                string sql = "delete from " + this.GetType().Name + " where id="
                     + this.Key + ";";
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 cmd.Connection.Open();
@@ -171,7 +171,10 @@ namespace Database
                 foreach(PropertyInfo pi in this.GetType().GetProperties
                     ( BindingFlags.Public | BindingFlags.Instance)) { 
                     OpcoesBase opcoes = (OpcoesBase)pi.GetCustomAttribute
-                        (typeof(OpcoesBase));   
+                        (typeof(OpcoesBase));
+
+                    if (opcoes == null) continue; 
+
                     if(this.Key == 0)
                     {
                         campos.Add(pi.Name);
@@ -188,13 +191,18 @@ namespace Database
                 string sql = "";
                 if (this.Key == 0)
                 {
-                    sql = "insert into " + this.GetType().Name + "s(";
+                    // Arrancando os campo de id porque auto increment no MySql nao precisa passar id na query
+                    campos.RemoveAt(0); // 0 = campo do Id "INSERT INTO (Id <- esse aqui, Nome) VALUES (Id, Nome)"
+                    valores.RemoveAt(0); // 0 = valor do Id "INSERT INTO (Id, Nome) VALUES (Id <- esse aqui, Nome)"
+                    // Apos eu escrever essas duas linhas eu comecei a questionar a minha vida
+
+                    sql = "insert into " + this.GetType().Name + "(";
                     sql += string.Join(", ", campos.ToArray());
                     sql += ") values (" + string.Join(", ", valores.ToArray()) + ")";
                 }
                 else
                 {
-                    sql = "update" + this.GetType().Name + "s set ";
+                    sql = "update " + this.GetType().Name + " set ";
                     sql += string.Join(", ", valores.ToArray()) + " where Id=" + this.Key;
                 }
                 MySqlCommand cmd = new MySqlCommand(sql, con);
@@ -223,7 +231,7 @@ namespace Database
                 }
                 else
                 {
-                    sql = "select * from " + this.GetType().Name + "s where"
+                    sql = "select * from " + this.GetType().Name + " where "
                         + chavePrimaria;
                 }
 

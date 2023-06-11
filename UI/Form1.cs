@@ -1,4 +1,5 @@
 ﻿using Database;
+using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,24 +47,36 @@ namespace ProjetoORM
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            // TODO testar e ver se as querys funcionam corretamente
             Cliente requisicao = new Cliente();
-            if (clienteId.Text != null) // Se o Id do cliente selecionado existir logo entao isso eh um update
+
+            if (clienteId.Text == null || clienteId.Text == "") // Se o campo de id for null ou estiver vazio a gente vai modelar um objeto seguindo padrao de create
+            {
+                requisicao.Id = 0; // Na realidade a gente nem precisa passar o parametro id pra criar algo no banco...
+                requisicao.Nome = nomeCliente.Text;
+                requisicao.Celular = clienteTelefone.Text;
+                requisicao.Cpf = clienteCPF.Text;
+            }
+            else // Se o Id do cliente selecionado existir logo entao isso eh um update
             {
                 requisicao.Id = int.Parse(clienteId.Text);
                 requisicao.Nome = nomeCliente.Text;
                 requisicao.Celular = clienteTelefone.Text;
                 requisicao.Cpf = clienteCPF.Text;
             }
-                requisicao.Id = 0; // Na realidade a gente nem precisa passar o parametro id pra criar algo no banco...
-                requisicao.Nome = nomeCliente.Text;
-                requisicao.Celular = clienteTelefone.Text;
-                requisicao.Cpf = clienteCPF.Text;
-
             requisicao.Salvar(); // Salva o objeto com os dados da requisicao independente da acao que foi feita
+
+
+            LimpaCampos(); // Limpar os campos do form de cliente
             GetClientes(); // Lista retorno dos dados
         }
-        
+        private void LimpaCampos()
+        {
+            // Limpa os campos (da pior forma possivel)
+            clienteId.Text = "";
+            nomeCliente.Text = "";
+            clienteTelefone.Text = "";
+            clienteCPF.Text = "";
+        }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
@@ -90,9 +103,18 @@ namespace ProjetoORM
             tableClientes.DataSource = cliente.Todos();
         }
 
+        private void GetCliente()
+        {
+            tableClientes.AutoGenerateColumns = false; // ja criei o cabecalho entao nao tem necessidade disso
+            // Como setar cabecalho fixo: https://stackoverflow.com/questions/37458585/showing-empty-rows-in-datagridview-while-binding-with-datatable
+
+            Cliente cliente = new Cliente();
+            tableClientes.DataSource = cliente.Buscar();
+        }
+
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
-            // TODO: Implementar pesquisa por Id ou nome tanto faz
+            GetCliente();
         }
     }
 }
