@@ -136,5 +136,33 @@ namespace ProjetoORM
         {
             GetCliente();
         }
+
+        private void btnPgClientes_Click(object sender, EventArgs e)
+        {
+            Form2 produtos = new Form2();
+
+            produtos.Show();
+            this.Hide();
+        }
+
+        private void btnPgProdutos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPgPedidos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPgFrotas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPgEncomendas_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
