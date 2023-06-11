@@ -13,53 +13,25 @@ namespace Database
     public class Base : IBase
     {
         private string connectionString = ConfigurationManager.AppSettings["DataSource"];
-        public List<IBase> Buscar()
+        public List<T> Buscar<T>(int id)
         {
-            var lista = new List<IBase>();
+            var lista = new List<T>();
+
             using (MySqlConnection con = new MySqlConnection(connectionString))
             {
-                List<string> where = new List<string>();
-                string chavePrimaria = string.Empty;
-                foreach(PropertyInfo pi in this.GetType().GetProperties
-                    (BindingFlags.Instance | BindingFlags.Public)) {
-                    OpcoesBase opcoes = (OpcoesBase)pi.GetCustomAttribute
-                        (typeof(OpcoesBase));
-                    if (opcoes != null)
-                    {
-                        if(opcoes.ChavePrimaria)
-                        {
-                            chavePrimaria = pi.Name + "=" + pi.GetValue(this);
-                        }
-                        else
-                        {
-                            if(tipoPropriedade(pi)=="varchar(255)" ||
-                                    tipoPropriedade(pi) =="datetime")
-                                where.Add(pi.Name + "='" + pi.GetValue(this) + "'");
-                            else
-                                where.Add(pi.Name + "=" + pi.GetValue(this));
-                        }
-                    }
-                }
-
                 string sql;
-                if (Key == 0)
-                {
-                    sql = "select * from " + this.GetType().Name;
-                    if(where.Count > 0)
-                    {
-                        sql += " where " + string.Join(" or ", where.ToArray());
-                    }
-                }
-                else
-                {
-                    sql = "select * from " + this.GetType().Name + " where "
-                        + chavePrimaria;
-                }
+
+                sql = "select * from " + this.GetType().Name + " where Id=" + id;
+
 
                 MySqlCommand mySql = new MySqlCommand(sql, con);
                 mySql.Connection.Open();
                 MySqlDataReader myDataReader = mySql.ExecuteReader();
-                while(myDataReader.Read())
+
+                // como eu me sinto neste exato momento https://www.youtube.com/watch?v=CZu9nSlj6i8
+                // tin ta ra tin tin tin ton ta ta tara teun tin tin tin tin ton *barulhos de beatbox*
+
+                while (myDataReader.Read())
                 {
                     var obj = (IBase)Activator.CreateInstance(this.GetType());
                     foreach (PropertyInfo info in obj.GetType().GetProperties(
@@ -71,10 +43,11 @@ namespace Database
                         {
                             info.SetValue(obj, myDataReader[info.Name]);
                         }
-                        lista.Add(obj);
                     }
+                    lista.Add((T)obj);
                 }
                 return lista;
+
             }
         }
 
@@ -132,12 +105,11 @@ namespace Database
             }
         }
 
-        public void Excluir()
+        public void Excluir(int id)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string sql = "delete from " + this.GetType().Name + " where id="
-                    + this.Key + ";";
+                string sql = "delete from " + this.GetType().Name + " where id=" + id; // eu quando
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 cmd.Connection.Open();
                 cmd.ExecuteNonQuery();
@@ -249,9 +221,9 @@ namespace Database
                         if (opcoes != null)
                         {
                             info.SetValue(obj, myDataReader[info.Name]);
-                        }
-                        lista.Add(obj);
+                        }    
                     }
+                    lista.Add(obj);
                 }
                 return lista;
             }

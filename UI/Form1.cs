@@ -80,7 +80,9 @@ namespace ProjetoORM
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            // TODO Implementeder delete
+            Cliente cliente = new Cliente();
+            var id = int.Parse(clienteId.Text);
+            cliente.Excluir(id);
         }
 
         private void tableClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -109,7 +111,25 @@ namespace ProjetoORM
             // Como setar cabecalho fixo: https://stackoverflow.com/questions/37458585/showing-empty-rows-in-datagridview-while-binding-with-datatable
 
             Cliente cliente = new Cliente();
-            tableClientes.DataSource = cliente.Buscar();
+
+            var id = int.Parse(clienteId.Text);
+
+            var retorno = cliente.Buscar<Cliente>(id).FirstOrDefault(); // vou me matar
+
+            if (retorno == null)
+            {
+                MessageBox.Show("Não encontrado");
+                LimpaCampos();
+                GetClientes();
+                return;
+            }
+
+            cliente.Id = id;
+            nomeCliente.Text = retorno.Nome;
+            clienteCPF.Text = retorno.Cpf;
+            clienteTelefone.Text = retorno.Celular;
+
+            tableClientes.DataSource = new List<Cliente>() { retorno };
         }
 
         private void btnPesquisar_Click(object sender, EventArgs e)
