@@ -103,7 +103,7 @@ namespace ProjetoORM
             // Como setar cabecalho fixo: https://stackoverflow.com/questions/37458585/showing-empty-rows-in-datagridview-while-binding-with-datatable
 
             Cliente cliente = new Cliente();
-            tableClientes.DataSource = cliente.Todos()[0];
+            tableClientes.DataSource = cliente.Todos();
         }
 
         private void GetCliente()
@@ -161,7 +161,10 @@ namespace ProjetoORM
 
         private void btnPgFrotas_Click(object sender, EventArgs e)
         {
+            Form4 frota = new Form4();
 
+            frota.Show();
+            this.Hide();
         }
 
         private void btnPgEncomendas_Click(object sender, EventArgs e)

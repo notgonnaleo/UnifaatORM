@@ -22,7 +22,6 @@ namespace ProjetoORM
         {
             new Pedido().CriarTabela(); // Cria a tabela baseado no modelo escolhido assim que a tela carrega
 
-
             Cliente cliente = new Cliente();
             List<Cliente> todosClientes = cliente.Todos();
             cbClientes.DataSource = todosClientes;
@@ -181,6 +180,22 @@ namespace ProjetoORM
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
             GetPedido();
+        }
+
+        private void btnPgClientes_Click(object sender, EventArgs e)
+        {
+            Form1 cliente = new Form1();
+
+            cliente.Show();
+            this.Hide();
+        }
+
+        private void btnPgProdutos_Click(object sender, EventArgs e)
+        {
+            Form2 produto = new Form2();
+
+            produto.Show();
+            this.Hide();
         }
     }
 }

@@ -65,18 +65,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.label1.Location = new System.Drawing.Point(71, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(16, 13);
+            this.label1.Size = new System.Drawing.Size(28, 23);
             this.label1.TabIndex = 2;
             this.label1.Text = "Id";
             // 
             // Nome
             // 
             this.Nome.AutoSize = true;
-            this.Nome.Location = new System.Drawing.Point(250, 36);
+            this.Nome.Font = new System.Drawing.Font("Comic Sans MS", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.Nome.Location = new System.Drawing.Point(233, 31);
             this.Nome.Name = "Nome";
-            this.Nome.Size = new System.Drawing.Size(35, 13);
+            this.Nome.Size = new System.Drawing.Size(52, 23);
             this.Nome.TabIndex = 3;
             this.Nome.Text = "Nome";
             // 

@@ -55,15 +55,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 29);
+            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(77, 52);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(18, 13);
+            this.label1.Size = new System.Drawing.Size(31, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "ID";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // tableClientes
             // 
+            this.tableClientes.BackgroundColor = System.Drawing.Color.White;
             this.tableClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -72,7 +74,7 @@
             this.Cpf});
             this.tableClientes.Location = new System.Drawing.Point(175, 155);
             this.tableClientes.Name = "tableClientes";
-            this.tableClientes.Size = new System.Drawing.Size(442, 189);
+            this.tableClientes.Size = new System.Drawing.Size(443, 189);
             this.tableClientes.TabIndex = 1;
             this.tableClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableClientes_CellContentClick);
             // 
@@ -103,33 +105,36 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(41, 77);
+            this.label2.Font = new System.Drawing.Font("Comic Sans MS", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label2.Location = new System.Drawing.Point(53, 99);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(52, 23);
             this.label2.TabIndex = 2;
             this.label2.Text = "Nome";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(265, 29);
+            this.label3.Font = new System.Drawing.Font("Comic Sans MS", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label3.Location = new System.Drawing.Point(240, 52);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(27, 13);
+            this.label3.Size = new System.Drawing.Size(39, 23);
             this.label3.TabIndex = 3;
             this.label3.Text = "CPF";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(265, 77);
+            this.label4.Font = new System.Drawing.Font("Comic Sans MS", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label4.Location = new System.Drawing.Point(240, 96);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 13);
+            this.label4.Size = new System.Drawing.Size(76, 23);
             this.label4.TabIndex = 4;
             this.label4.Text = "Telefone";
             // 
             // clienteId
             // 
-            this.clienteId.Location = new System.Drawing.Point(66, 29);
+            this.clienteId.Location = new System.Drawing.Point(117, 52);
             this.clienteId.Name = "clienteId";
             this.clienteId.Size = new System.Drawing.Size(100, 20);
             this.clienteId.TabIndex = 5;
@@ -137,7 +142,7 @@
             // 
             // nomeCliente
             // 
-            this.nomeCliente.Location = new System.Drawing.Point(82, 77);
+            this.nomeCliente.Location = new System.Drawing.Point(117, 99);
             this.nomeCliente.Name = "nomeCliente";
             this.nomeCliente.Size = new System.Drawing.Size(100, 20);
             this.nomeCliente.TabIndex = 6;
@@ -145,7 +150,7 @@
             // 
             // clienteCPF
             // 
-            this.clienteCPF.Location = new System.Drawing.Point(298, 26);
+            this.clienteCPF.Location = new System.Drawing.Point(289, 52);
             this.clienteCPF.Name = "clienteCPF";
             this.clienteCPF.Size = new System.Drawing.Size(100, 20);
             this.clienteCPF.TabIndex = 7;
@@ -153,7 +158,7 @@
             // 
             // clienteTelefone
             // 
-            this.clienteTelefone.Location = new System.Drawing.Point(320, 77);
+            this.clienteTelefone.Location = new System.Drawing.Point(321, 96);
             this.clienteTelefone.Name = "clienteTelefone";
             this.clienteTelefone.Size = new System.Drawing.Size(100, 20);
             this.clienteTelefone.TabIndex = 8;
@@ -161,9 +166,9 @@
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(563, 19);
+            this.btnSalvar.Location = new System.Drawing.Point(565, 87);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(75, 23);
+            this.btnSalvar.Size = new System.Drawing.Size(68, 47);
             this.btnSalvar.TabIndex = 9;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
@@ -171,9 +176,9 @@
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(644, 19);
+            this.btnExcluir.Location = new System.Drawing.Point(639, 88);
             this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(75, 23);
+            this.btnExcluir.Size = new System.Drawing.Size(68, 46);
             this.btnExcluir.TabIndex = 10;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
@@ -181,9 +186,9 @@
             // 
             // btnPesquisar
             // 
-            this.btnPesquisar.Location = new System.Drawing.Point(563, 48);
+            this.btnPesquisar.Location = new System.Drawing.Point(493, 88);
             this.btnPesquisar.Name = "btnPesquisar";
-            this.btnPesquisar.Size = new System.Drawing.Size(75, 23);
+            this.btnPesquisar.Size = new System.Drawing.Size(66, 46);
             this.btnPesquisar.TabIndex = 11;
             this.btnPesquisar.Text = "Pesquisar";
             this.btnPesquisar.UseVisualStyleBackColor = true;
@@ -243,6 +248,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnPgEncomendas);
             this.Controls.Add(this.btnPgFrotas);

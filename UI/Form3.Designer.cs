@@ -37,12 +37,12 @@
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.tablePedidos = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pedidoId = new System.Windows.Forms.TextBox();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NomeProdPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Qtde = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pedidoId = new System.Windows.Forms.TextBox();
             this.cbClientes = new System.Windows.Forms.ComboBox();
             this.cbProduto = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -87,6 +87,7 @@
             this.btnPgProdutos.TabIndex = 31;
             this.btnPgProdutos.Text = "Produtos";
             this.btnPgProdutos.UseVisualStyleBackColor = true;
+            this.btnPgProdutos.Click += new System.EventHandler(this.btnPgProdutos_Click);
             // 
             // btnPgClientes
             // 
@@ -96,6 +97,7 @@
             this.btnPgClientes.TabIndex = 30;
             this.btnPgClientes.Text = "Clientes";
             this.btnPgClientes.UseVisualStyleBackColor = true;
+            this.btnPgClientes.Click += new System.EventHandler(this.btnPgClientes_Click);
             // 
             // btnPesquisar
             // 
@@ -141,22 +143,6 @@
             this.tablePedidos.TabIndex = 26;
             this.tablePedidos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablePedidos_CellContentClick);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(70, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(16, 13);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "Id";
-            // 
-            // pedidoId
-            // 
-            this.pedidoId.Location = new System.Drawing.Point(111, 23);
-            this.pedidoId.Name = "pedidoId";
-            this.pedidoId.Size = new System.Drawing.Size(100, 20);
-            this.pedidoId.TabIndex = 22;
-            // 
             // Id
             // 
             this.Id.DataPropertyName = "Id";
@@ -181,6 +167,23 @@
             this.Qtde.HeaderText = "Qtde";
             this.Qtde.Name = "Qtde";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label1.Location = new System.Drawing.Point(77, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(28, 23);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "Id";
+            // 
+            // pedidoId
+            // 
+            this.pedidoId.Location = new System.Drawing.Point(111, 23);
+            this.pedidoId.Name = "pedidoId";
+            this.pedidoId.Size = new System.Drawing.Size(100, 20);
+            this.pedidoId.TabIndex = 22;
+            // 
             // cbClientes
             // 
             this.cbClientes.FormattingEnabled = true;
@@ -201,18 +204,20 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(70, 76);
+            this.label2.Font = new System.Drawing.Font("Comic Sans MS", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label2.Location = new System.Drawing.Point(43, 73);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 13);
+            this.label2.Size = new System.Drawing.Size(62, 23);
             this.label2.TabIndex = 37;
             this.label2.Text = "Cliente";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(268, 76);
+            this.label3.Font = new System.Drawing.Font("Comic Sans MS", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label3.Location = new System.Drawing.Point(251, 73);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.Size = new System.Drawing.Size(68, 23);
             this.label3.TabIndex = 38;
             this.label3.Text = "Produto";
             // 
@@ -226,9 +231,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(268, 28);
+            this.label4.Font = new System.Drawing.Font("Comic Sans MS", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label4.Location = new System.Drawing.Point(269, 21);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(30, 13);
+            this.label4.Size = new System.Drawing.Size(50, 23);
             this.label4.TabIndex = 40;
             this.label4.Text = "Qtde";
             // 
