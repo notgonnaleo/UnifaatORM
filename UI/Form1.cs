@@ -83,6 +83,7 @@ namespace ProjetoORM
             Cliente cliente = new Cliente();
             var id = int.Parse(clienteId.Text);
             cliente.Excluir(id);
+            GetClientes();
         }
 
         private void tableClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -102,7 +103,7 @@ namespace ProjetoORM
             // Como setar cabecalho fixo: https://stackoverflow.com/questions/37458585/showing-empty-rows-in-datagridview-while-binding-with-datatable
 
             Cliente cliente = new Cliente();
-            tableClientes.DataSource = cliente.Todos();
+            tableClientes.DataSource = cliente.Todos()[0];
         }
 
         private void GetCliente()
@@ -139,20 +140,23 @@ namespace ProjetoORM
 
         private void btnPgClientes_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnPgProdutos_Click(object sender, EventArgs e)
+        {
             Form2 produtos = new Form2();
 
             produtos.Show();
             this.Hide();
         }
 
-        private void btnPgProdutos_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnPgPedidos_Click(object sender, EventArgs e)
         {
+            Form3 pedido = new Form3();
 
+            pedido.Show();
+            this.Hide();
         }
 
         private void btnPgFrotas_Click(object sender, EventArgs e)

@@ -120,6 +120,7 @@
             this.tableProdutos.Name = "tableProdutos";
             this.tableProdutos.Size = new System.Drawing.Size(442, 189);
             this.tableProdutos.TabIndex = 12;
+            this.tableProdutos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableProdutos_CellContentClick);
             // 
             // Id
             // 
@@ -159,6 +160,7 @@
             this.btnPgPedidos.TabIndex = 19;
             this.btnPgPedidos.Text = "Pedidos";
             this.btnPgPedidos.UseVisualStyleBackColor = true;
+            this.btnPgPedidos.Click += new System.EventHandler(this.btnPgPedidos_Click);
             // 
             // btnPgProdutos
             // 

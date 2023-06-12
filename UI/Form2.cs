@@ -81,6 +81,8 @@ namespace ProjetoORM
             Produto produto = new Produto();
             var id = int.Parse(produtoId.Text);
             produto.Excluir(id);
+            GetProdutos(); // Lista retorno dos dados
+
         }
 
         private void nomeProduto_TextChanged(object sender, EventArgs e)
@@ -110,15 +112,28 @@ namespace ProjetoORM
 
         private void btnPgClientes_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void btnPgProdutos_Click(object sender, EventArgs e)
-        {
             Form1 clientes = new Form1();
 
             clientes.Show();
             this.Hide();
+        }
+
+        private void btnPgProdutos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPgPedidos_Click(object sender, EventArgs e)
+        {
+            Form3 pedido = new Form3();
+
+            pedido.Show();
+            this.Hide();
+        }
+
+        private void tableProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

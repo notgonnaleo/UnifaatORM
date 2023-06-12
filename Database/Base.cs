@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Database
 {
     public class Base : IBase
@@ -229,7 +230,6 @@ namespace Database
             }
         }
     
-
         // Sim, vamos implementar essa interface aqui
         // mesmo que nao esteja sendo usada, o motivo eh porque 
         // temos que respeitar o contrato entre a interface a classe.
@@ -237,5 +237,6 @@ namespace Database
         {
             throw new NotImplementedException();
         }
+  
     }
 }
