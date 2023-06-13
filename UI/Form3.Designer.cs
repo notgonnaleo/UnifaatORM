@@ -37,10 +37,6 @@
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.tablePedidos = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NomeProdPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qtde = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.pedidoId = new System.Windows.Forms.TextBox();
             this.cbClientes = new System.Windows.Forms.ComboBox();
@@ -49,6 +45,17 @@
             this.label3 = new System.Windows.Forms.Label();
             this.qtdeVal = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbCidade = new System.Windows.Forms.ComboBox();
+            this.dateTimePedido = new System.Windows.Forms.DateTimePicker();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NomeProdPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qtde = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Destino = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnPdf = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tablePedidos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -136,36 +143,14 @@
             this.Id,
             this.dataGridViewTextBoxColumn1,
             this.NomeProdPedido,
-            this.Qtde});
-            this.tablePedidos.Location = new System.Drawing.Point(187, 159);
+            this.Qtde,
+            this.Destino,
+            this.Data});
+            this.tablePedidos.Location = new System.Drawing.Point(81, 163);
             this.tablePedidos.Name = "tablePedidos";
-            this.tablePedidos.Size = new System.Drawing.Size(442, 189);
+            this.tablePedidos.Size = new System.Drawing.Size(642, 189);
             this.tablePedidos.TabIndex = 26;
             this.tablePedidos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablePedidos_CellContentClick);
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "NomeCliente";
-            this.dataGridViewTextBoxColumn1.HeaderText = "NomeCliente";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // NomeProdPedido
-            // 
-            this.NomeProdPedido.DataPropertyName = "NomeProdPedido";
-            this.NomeProdPedido.HeaderText = "NomeProdPedido";
-            this.NomeProdPedido.Name = "NomeProdPedido";
-            // 
-            // Qtde
-            // 
-            this.Qtde.DataPropertyName = "Qtde";
-            this.Qtde.HeaderText = "Qtde";
-            this.Qtde.Name = "Qtde";
             // 
             // label1
             // 
@@ -210,6 +195,7 @@
             this.label2.Size = new System.Drawing.Size(62, 23);
             this.label2.TabIndex = 37;
             this.label2.Text = "Cliente";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -238,11 +224,99 @@
             this.label4.TabIndex = 40;
             this.label4.Text = "Qtde";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Comic Sans MS", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label6.Location = new System.Drawing.Point(43, 115);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 23);
+            this.label6.TabIndex = 42;
+            this.label6.Text = "Cidade";
+            // 
+            // cbCidade
+            // 
+            this.cbCidade.FormattingEnabled = true;
+            this.cbCidade.Location = new System.Drawing.Point(111, 115);
+            this.cbCidade.Name = "cbCidade";
+            this.cbCidade.Size = new System.Drawing.Size(121, 21);
+            this.cbCidade.TabIndex = 41;
+            // 
+            // dateTimePedido
+            // 
+            this.dateTimePedido.CustomFormat = "yyyy-MM-dd hh:mm:ss";
+            this.dateTimePedido.Location = new System.Drawing.Point(533, 118);
+            this.dateTimePedido.Name = "dateTimePedido";
+            this.dateTimePedido.Size = new System.Drawing.Size(190, 20);
+            this.dateTimePedido.TabIndex = 43;
+            this.dateTimePedido.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "NomeCliente";
+            this.dataGridViewTextBoxColumn1.HeaderText = "NomeCliente";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // NomeProdPedido
+            // 
+            this.NomeProdPedido.DataPropertyName = "NomeProdPedido";
+            this.NomeProdPedido.HeaderText = "NomeProdPedido";
+            this.NomeProdPedido.Name = "NomeProdPedido";
+            // 
+            // Qtde
+            // 
+            this.Qtde.DataPropertyName = "Qtde";
+            this.Qtde.HeaderText = "Qtde";
+            this.Qtde.Name = "Qtde";
+            // 
+            // Destino
+            // 
+            this.Destino.DataPropertyName = "Cidade";
+            this.Destino.HeaderText = "Destino";
+            this.Destino.Name = "Destino";
+            // 
+            // Data
+            // 
+            this.Data.DataPropertyName = "DataPedido";
+            this.Data.HeaderText = "Data";
+            this.Data.Name = "Data";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(575, 81);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(156, 23);
+            this.button1.TabIndex = 44;
+            this.button1.Text = "Pesquisar por data";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnPdf
+            // 
+            this.btnPdf.Location = new System.Drawing.Point(28, 382);
+            this.btnPdf.Name = "btnPdf";
+            this.btnPdf.Size = new System.Drawing.Size(118, 23);
+            this.btnPdf.TabIndex = 45;
+            this.btnPdf.Text = "Gerar relatorio";
+            this.btnPdf.UseVisualStyleBackColor = true;
+            this.btnPdf.Click += new System.EventHandler(this.btnPdf_Click);
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnPdf);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.dateTimePedido);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.cbCidade);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.qtdeVal);
             this.Controls.Add(this.label3);
@@ -282,15 +356,22 @@
         private System.Windows.Forms.DataGridView tablePedidos;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox pedidoId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NomeProdPedido;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Qtde;
         private System.Windows.Forms.ComboBox cbClientes;
         private System.Windows.Forms.ComboBox cbProduto;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox qtdeVal;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cbCidade;
+        private System.Windows.Forms.DateTimePicker dateTimePedido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NomeProdPedido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Qtde;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Destino;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Data;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnPdf;
     }
 }

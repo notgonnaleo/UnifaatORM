@@ -21,6 +21,10 @@ namespace Database
         public string NomeProdPedido { get; set; }
         [OpcoesBase(UsaBD = true)]
         public int Qtde { get; set; }
+        [OpcoesBase(UsaBD = true)]
+        public string Cidade { get; set; }
+        [OpcoesBase(UsaBD = true)]
+        public DateTime DataPedido { get; set; }
 
         public new List<Pedido> Todos()
         {

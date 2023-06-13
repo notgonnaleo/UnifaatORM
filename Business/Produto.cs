@@ -11,7 +11,6 @@ namespace Database
     {
         [OpcoesBase(ChavePrimaria = true, UsaBD = true, UsaBusca = true)]
         public int Id { get; set; }
-
         [OpcoesBase(UsaBD = true)]
         public string Nome { get; set; }
 

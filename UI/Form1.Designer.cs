@@ -56,7 +56,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Comic Sans MS", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(77, 52);
+            this.label1.Location = new System.Drawing.Point(79, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 23);
             this.label1.TabIndex = 0;
@@ -106,7 +106,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Comic Sans MS", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.label2.Location = new System.Drawing.Point(53, 99);
+            this.label2.Location = new System.Drawing.Point(55, 74);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 23);
             this.label2.TabIndex = 2;
@@ -116,7 +116,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Comic Sans MS", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.label3.Location = new System.Drawing.Point(240, 52);
+            this.label3.Location = new System.Drawing.Point(242, 27);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 23);
             this.label3.TabIndex = 3;
@@ -126,7 +126,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Comic Sans MS", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.label4.Location = new System.Drawing.Point(240, 96);
+            this.label4.Location = new System.Drawing.Point(242, 71);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 23);
             this.label4.TabIndex = 4;
@@ -134,7 +134,7 @@
             // 
             // clienteId
             // 
-            this.clienteId.Location = new System.Drawing.Point(117, 52);
+            this.clienteId.Location = new System.Drawing.Point(119, 27);
             this.clienteId.Name = "clienteId";
             this.clienteId.Size = new System.Drawing.Size(100, 20);
             this.clienteId.TabIndex = 5;
@@ -142,7 +142,7 @@
             // 
             // nomeCliente
             // 
-            this.nomeCliente.Location = new System.Drawing.Point(117, 99);
+            this.nomeCliente.Location = new System.Drawing.Point(119, 74);
             this.nomeCliente.Name = "nomeCliente";
             this.nomeCliente.Size = new System.Drawing.Size(100, 20);
             this.nomeCliente.TabIndex = 6;
@@ -150,7 +150,7 @@
             // 
             // clienteCPF
             // 
-            this.clienteCPF.Location = new System.Drawing.Point(289, 52);
+            this.clienteCPF.Location = new System.Drawing.Point(291, 27);
             this.clienteCPF.Name = "clienteCPF";
             this.clienteCPF.Size = new System.Drawing.Size(100, 20);
             this.clienteCPF.TabIndex = 7;
@@ -158,7 +158,7 @@
             // 
             // clienteTelefone
             // 
-            this.clienteTelefone.Location = new System.Drawing.Point(321, 96);
+            this.clienteTelefone.Location = new System.Drawing.Point(323, 71);
             this.clienteTelefone.Name = "clienteTelefone";
             this.clienteTelefone.Size = new System.Drawing.Size(100, 20);
             this.clienteTelefone.TabIndex = 8;

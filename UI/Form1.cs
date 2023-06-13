@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -49,25 +51,25 @@ namespace ProjetoORM
         {
             Cliente requisicao = new Cliente();
 
-            if (clienteId.Text == null || clienteId.Text == "") // Se o campo de id for null ou estiver vazio a gente vai modelar um objeto seguindo padrao de create
-            {
-                requisicao.Id = 0; // Na realidade a gente nem precisa passar o parametro id pra criar algo no banco...
-                requisicao.Nome = nomeCliente.Text;
-                requisicao.Celular = clienteTelefone.Text;
-                requisicao.Cpf = clienteCPF.Text;
-            }
-            else // Se o Id do cliente selecionado existir logo entao isso eh um update
-            {
-                requisicao.Id = int.Parse(clienteId.Text);
-                requisicao.Nome = nomeCliente.Text;
-                requisicao.Celular = clienteTelefone.Text;
-                requisicao.Cpf = clienteCPF.Text;
-            }
-            requisicao.Salvar(); // Salva o objeto com os dados da requisicao independente da acao que foi feita
+                if (clienteId.Text == null || clienteId.Text == "") // Se o campo de id for null ou estiver vazio a gente vai modelar um objeto seguindo padrao de create
+                {
+                    requisicao.Id = 0; // Na realidade a gente nem precisa passar o parametro id pra criar algo no banco...
+                    requisicao.Nome = nomeCliente.Text;
+                    requisicao.Celular = clienteTelefone.Text;
+                    requisicao.Cpf = clienteCPF.Text;
+                }
+                else // Se o Id do cliente selecionado existir logo entao isso eh um update
+                {
+                    requisicao.Id = int.Parse(clienteId.Text);
+                    requisicao.Nome = nomeCliente.Text;
+                    requisicao.Celular = clienteTelefone.Text;
+                    requisicao.Cpf = clienteCPF.Text;
+                }
+                requisicao.Salvar(); // Salva o objeto com os dados da requisicao independente da acao que foi feita
 
 
-            LimpaCampos(); // Limpar os campos do form de cliente
-            GetClientes(); // Lista retorno dos dados
+                LimpaCampos(); // Limpar os campos do form de cliente
+                GetClientes(); // Lista retorno dos dados                    
         }
         private void LimpaCampos()
         {
@@ -115,7 +117,7 @@ namespace ProjetoORM
 
             var id = int.Parse(clienteId.Text);
 
-            var retorno = cliente.Buscar<Cliente>(id).FirstOrDefault(); // vou me matar
+            var retorno = cliente.Buscar<Cliente>(id).FirstOrDefault(); // pega o primeiro que vier 
 
             if (retorno == null)
             {
@@ -161,13 +163,14 @@ namespace ProjetoORM
 
         private void btnPgFrotas_Click(object sender, EventArgs e)
         {
-            Form4 frota = new Form4();
-
-            frota.Show();
-            this.Hide();
         }
 
         private void btnPgEncomendas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbCidade_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

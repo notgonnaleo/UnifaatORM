@@ -60,7 +60,7 @@ namespace ProjetoORM
 
             var id = int.Parse(produtoId.Text);
 
-            var retorno = produto.Buscar<Produto>(id).FirstOrDefault(); // vou me matar
+            var retorno = produto.Buscar<Produto>(id).FirstOrDefault(); // pega o primeiro que vier 
 
             if (retorno == null)
             {

@@ -22,8 +22,16 @@ namespace Database
             {
                 string sql;
 
-                sql = "select * from " + this.GetType().Name + " where Id=" + id;
+                if (this.GetType().Name.ToString() == "Pedido")
+                {
+                    sql = "select * from " + this.GetType().Name + " where Id=" + id;
 
+                }
+                else
+                {
+                    sql = "select * from " + this.GetType().Name + " where Id=" + id;
+
+                }
 
                 MySqlCommand mySql = new MySqlCommand(sql, con);
                 mySql.Connection.Open();
@@ -31,6 +39,41 @@ namespace Database
 
                 // como eu me sinto neste exato momento https://www.youtube.com/watch?v=CZu9nSlj6i8
                 // tin ta ra tin tin tin ton ta ta tara teun tin tin tin tin ton *barulhos de beatbox*
+
+                while (myDataReader.Read())
+                {
+                    var obj = (IBase)Activator.CreateInstance(this.GetType());
+                    foreach (PropertyInfo info in obj.GetType().GetProperties(
+                        BindingFlags.Public | BindingFlags.Instance))
+                    {
+                        OpcoesBase opcoes = (OpcoesBase)info.GetCustomAttribute
+                            (typeof(OpcoesBase));
+                        if (opcoes != null)
+                        {
+                            info.SetValue(obj, myDataReader[info.Name]);
+                        }
+                    }
+                    lista.Add((T)obj);
+                }
+                return lista;
+
+            }
+        }
+
+        // sobrecarga do metodo de busca pra fazer pesquisa pela data
+        public List<T> Buscar<T>(string date)
+        {
+            var lista = new List<T>();
+
+            using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                string sql;
+               
+                sql = "select * from " + this.GetType().Name + " where DataPedido like " + "'%" + date + "%'";
+
+                MySqlCommand mySql = new MySqlCommand(sql, con);
+                mySql.Connection.Open();
+                MySqlDataReader myDataReader = mySql.ExecuteReader();
 
                 while (myDataReader.Read())
                 {
@@ -164,19 +207,60 @@ namespace Database
                 string sql = "";
                 if (this.Key == 0)
                 {
-                    // Arrancando os campo de id porque auto increment no MySql nao precisa passar id na query
-                    campos.RemoveAt(0); // 0 = campo do Id "INSERT INTO (Id <- esse aqui, Nome) VALUES (Id, Nome)"
-                    valores.RemoveAt(0); // 0 = valor do Id "INSERT INTO (Id, Nome) VALUES (Id <- esse aqui, Nome)"
-                    // Apos eu escrever essas duas linhas eu comecei a questionar a minha vida
+                    // condicao que so eh pra acontecer na tela de pedidos 
+                    // apos essa linha me declaro o inimigo da estrutura.
+                    if (campos.Any(x => x.Equals("DataPedido")))
+                    {
+                        // Arrancando os campo de id porque auto increment no MySql nao precisa passar id na query
+                        campos.RemoveAt(0); // 0 = campo do Id "INSERT INTO (Id <- esse aqui, Nome) VALUES (Id, Nome)"
+                        valores.RemoveAt(0); // 0 = valor do Id "INSERT INTO (Id, Nome) VALUES (Id <- esse aqui, Nome)"
 
-                    sql = "insert into " + this.GetType().Name + "(";
-                    sql += string.Join(", ", campos.ToArray());
-                    sql += ") values (" + string.Join(", ", valores.ToArray()) + ")";
+                        valores.RemoveAt(6); // por algum motivo ta vindo uma data random aleatoria q ta quebrando minha gambiarra monstra
+                        // entao to removendo o campo de valor de data pra pode continuar
+
+                        sql = "insert into " + this.GetType().Name + "(";
+                        sql += string.Join(", ", campos.ToArray());
+                        sql += ") values (" + string.Join(", ", valores.ToArray()) + ", (select current_timestamp()))";
+                    }
+                    else
+                    {
+                        // Arrancando os campo de id porque auto increment no MySql nao precisa passar id na query
+                        campos.RemoveAt(0); // 0 = campo do Id "INSERT INTO (Id <- esse aqui, Nome) VALUES (Id, Nome)"
+                        valores.RemoveAt(0); // 0 = valor do Id "INSERT INTO (Id, Nome) VALUES (Id <- esse aqui, Nome)"
+                                             // Apos eu escrever essas duas linhas eu comecei a questionar a minha vida
+
+                        valores.RemoveAt(6);
+                        campos.RemoveAt(6);
+
+                        sql = "insert into " + this.GetType().Name + "(";
+                        sql += string.Join(", ", campos.ToArray());
+                        sql += ") values (" + string.Join(", ", valores.ToArray()) + ")";
+                    }
                 }
                 else
                 {
-                    sql = "update " + this.GetType().Name + " set ";
-                    sql += string.Join(", ", valores.ToArray()) + " where Id=" + this.Key;
+                    if (campos.Any(x => x.Equals("DataPedido")))
+                    {
+                        // Arrancando os campo de id porque auto increment no MySql nao precisa passar id na query
+                        campos.RemoveAt(0); // 0 = campo do Id "INSERT INTO (Id <- esse aqui, Nome) VALUES (Id, Nome)"
+                        valores.RemoveAt(0); // 0 = valor do Id "INSERT INTO (Id, Nome) VALUES (Id <- esse aqui, Nome)"
+
+                        sql = "update " + this.GetType().Name + " set";
+                        sql += string.Join(", ", valores.ToArray()) + " where Id=" + this.Key;
+                    }
+                    else
+                    {
+                        valores.RemoveAt(5);
+                        campos.RemoveAt(5);
+                        // denovo, vc sabe muito bem o porque essas 2 linhas estao aqui
+                        // exatamente nem pense em tentar alterar a data... 
+
+                        sql = "update " + this.GetType().Name + " set ";
+                        sql += string.Join(", ", valores.ToArray()) + " where Id=" + this.Key;
+
+                        // resolvendo todos os problemas. da pior forma possivel, mas ainda assim resolvendo
+                    }
+
                 }
                 MySqlCommand cmd = new MySqlCommand(sql, con);
                 cmd.Connection.Open();
