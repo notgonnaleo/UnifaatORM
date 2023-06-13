@@ -304,7 +304,7 @@ namespace ProjetoORM
 
             // Metodo de impressao retirado do SO: https://stackoverflow.com/questions/7601145/c-winform-creating-pdf
             // utilizado nuget package: https://github.com/itext/itextsharp
-            string outputFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), $"Relatorio-Pedido-{id}-{retorno.DataPedido}.pdf");
+            string outputFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), $"Relatorio-Pedido-{id}-{retorno.NomeCliente}-{retorno.NomeProdPedido}.pdf");
 
             using (FileStream fs = new FileStream(outputFile, FileMode.Create, FileAccess.Write, FileShare.None))
             {
