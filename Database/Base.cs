@@ -229,9 +229,6 @@ namespace Database
                         valores.RemoveAt(0); // 0 = valor do Id "INSERT INTO (Id, Nome) VALUES (Id <- esse aqui, Nome)"
                                              // Apos eu escrever essas duas linhas eu comecei a questionar a minha vida
 
-                        valores.RemoveAt(6);
-                        campos.RemoveAt(6);
-
                         sql = "insert into " + this.GetType().Name + "(";
                         sql += string.Join(", ", campos.ToArray());
                         sql += ") values (" + string.Join(", ", valores.ToArray()) + ")";
@@ -239,22 +236,17 @@ namespace Database
                 }
                 else
                 {
-                    if (campos.Any(x => x.Equals("DataPedido")))
+                    if (this.GetType().Name.ToString() == "Pedido")
                     {
-                        // Arrancando os campo de id porque auto increment no MySql nao precisa passar id na query
-                        campos.RemoveAt(0); // 0 = campo do Id "INSERT INTO (Id <- esse aqui, Nome) VALUES (Id, Nome)"
-                        valores.RemoveAt(0); // 0 = valor do Id "INSERT INTO (Id, Nome) VALUES (Id <- esse aqui, Nome)"
+                        valores.RemoveAt(6);
+                        // denovo, vc sabe muito bem o porque essas 2 linhas estao aqui
+                        // exatamente nem pense em tentar alterar a data... 
 
-                        sql = "update " + this.GetType().Name + " set";
+                        sql = "update " + this.GetType().Name + " set ";
                         sql += string.Join(", ", valores.ToArray()) + " where Id=" + this.Key;
                     }
                     else
                     {
-                        valores.RemoveAt(5);
-                        campos.RemoveAt(5);
-                        // denovo, vc sabe muito bem o porque essas 2 linhas estao aqui
-                        // exatamente nem pense em tentar alterar a data... 
-
                         sql = "update " + this.GetType().Name + " set ";
                         sql += string.Join(", ", valores.ToArray()) + " where Id=" + this.Key;
 
